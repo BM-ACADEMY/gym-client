@@ -14,9 +14,9 @@ const TrainersSection = () => {
     {
       id: 1,
       name: 'Mr. Maran',
-      specialty: 'Physique Transformation Expert',
+      specialty: 'Advanced Physique Transformation Expert',
       image: Trainer1
-    },
+    },  
     {
       id: 2,
       name: 'Mr. Vetri',

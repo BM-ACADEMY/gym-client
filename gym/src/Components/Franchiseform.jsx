@@ -25,13 +25,15 @@ const FranchiseForm = () => {
     setNotification({ type: "", message: "" });
 
     try {
+      // Change the axios post URL in handleSubmit
       const response = await axios.post(
-        "https://gym-server-qx86.onrender.com/send-email",
+        `${import.meta.env.VITE_API_BASE_URL}/send-franchise-email`,
         formData,
         {
           headers: { "Content-Type": "application/json" },
         }
       );
+      
       console.log("Response:", response.data);
       setNotification({
         type: "success",

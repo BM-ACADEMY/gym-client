@@ -25,7 +25,7 @@ const GymLocation = () => {
       address: "3rd floor, Balakrishna nagar, Mannarkudi, 614001",
       embedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4824.576217708035!2d79.44625347583755!3d10.662895861276011!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a554d073b7b2e57%3A0x94120e9fda9f044a!2sNaturals%20Mannargudi!5e1!3m2!1sen!2sin!4v1746010852505!5m2!1sen!2sin",
       phone: "+91 97513 51156",
-      hours: "5:00 AM - 10:00 PM (Mon-Sat), Closed (Sun)",
+      hours: "5:00 AM - 10:00 AM, 3:00 PM - 9:30 PM (Mon-Sat), 10:00 AM - 12:00 PM (Women Only), Closed (Sun)",
       image: Googleimage2
     },
   ];

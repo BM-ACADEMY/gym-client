@@ -10,20 +10,25 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import logo from "../assets/Home/logo.png";
+import EnquiryForm from "./EnquiryForm";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [hoveredItem, setHoveredItem] = useState(null);
   const [scrolled, setScrolled] = useState(false);
+  const [showEnquiry, setShowEnquiry] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      const scrollPercentage =
+        (window.scrollY /
+          (document.documentElement.scrollHeight - window.innerHeight)) *
+        100;
       setScrolled(scrollPercentage > 7);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleDrawer = (open) => (event) => {
@@ -42,18 +47,26 @@ const Navbar = () => {
     { name: "Services", id: "services" },
     { name: "Franchise", id: "franchise" },
     { name: "Contact", id: "contact" },
+    { name: "Enquiry", id: "enquiry", action: () => setShowEnquiry(true) },
   ];
 
-  const handleNavClick = (id) => {
+  const handleNavClick = (id, action) => {
+    if (id === "enquiry" || action) {
+      setIsOpen(false); // Close the offcanvas immediately
+      // Delay opening the Enquiry form to allow offcanvas exit animation to complete
+      setTimeout(() => {
+        setShowEnquiry(true);
+      }, 300); // Match the drawer's exit animation duration (0.3s)
+      return;
+    }
     const element = document.getElementById(id);
     if (element) {
       window.history.pushState(null, null, `#${id}`);
       element.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false);
+      setIsOpen(false); // Close the offcanvas for other navigation items
     }
   };
 
-  // Framer Motion variants for animations
   const navbarVariants = {
     hidden: { y: -100, opacity: 0 },
     visible: {
@@ -99,8 +112,8 @@ const Navbar = () => {
     <>
       <motion.nav
         className={`fixed top-0 left-0 w-full text-white shadow-md z-50 backdrop-blur-[12px] border-b transition-colors duration-300 ${
-          scrolled 
-            ? "bg-[#27303cbb] border-[rgba(255,255,255,0.3)]" 
+          scrolled
+            ? "bg-[#27303cbb] border-[rgba(255,255,255,0.3)]"
             : "bg-[#00000026] border-[rgba(255,255,255,0.2)]"
         }`}
         variants={navbarVariants}
@@ -109,26 +122,25 @@ const Navbar = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-20 md:h-24 items-center">
-          <motion.div
-  className="flex-shrink-0"
-  whileHover={{ scale: 1.05 }}
-  transition={{ type: "spring", stiffness: 300 }}
->
-  <button 
-    onClick={() => handleNavClick("home")}
-    className="focus:outline-none"
-    aria-label="Go to home section"
-  >
-    <img
-      src={logo}
-      alt="Battle-Fitness-Unisex-Gym"
-      className="h-20 w-auto md:h-24 object-contain"
-      title="Battle Fitness Unisex Gym"
-    />
-  </button>
-</motion.div>
+            <motion.div
+              className="flex-shrink-0"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <button
+                onClick={() => handleNavClick("home")}
+                className="focus:outline-none"
+                aria-label="Go to home section"
+              >
+                <img
+                  src={logo}
+                  alt="Battle-Fitness-Unisex-Gym"
+                  className="h-20 w-auto md:h-24 object-contain"
+                  title="Battle Fitness Unisex Gym"
+                />
+              </button>
+            </motion.div>
 
-            {/* Desktop Nav Items */}
             <div className="hidden md:flex items-center space-x-6">
               {navItems.map((item, index) => (
                 <motion.button
@@ -137,7 +149,7 @@ const Navbar = () => {
                   variants={navItemVariants}
                   initial="hidden"
                   animate="visible"
-                  onClick={() => handleNavClick(item.id)}
+                  onClick={() => handleNavClick(item.id, item.action)}
                   onMouseEnter={() => setHoveredItem(item.id)}
                   onMouseLeave={() => setHoveredItem(null)}
                   className="relative px-4 py-2 font-sans font-medium text-lg hover:text-red-400"
@@ -163,7 +175,6 @@ const Navbar = () => {
               ))}
             </div>
 
-            {/* Hamburger Toggle */}
             <div className="md:hidden">
               <IconButton
                 edge="start"
@@ -189,7 +200,6 @@ const Navbar = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile Drawer */}
       <AnimatePresence>
         {isOpen && (
           <Drawer
@@ -214,7 +224,6 @@ const Navbar = () => {
               animate="visible"
               exit="exit"
             >
-              {/* Close button */}
               <div className="flex justify-end px-4 py-3">
                 <IconButton
                   onClick={toggleDrawer(false)}
@@ -229,7 +238,6 @@ const Navbar = () => {
                 </IconButton>
               </div>
 
-              {/* Drawer Navigation Items */}
               <List>
                 {navItems.map((item, index) => (
                   <motion.div
@@ -241,7 +249,7 @@ const Navbar = () => {
                   >
                     <ListItem
                       button
-                      onClick={() => handleNavClick(item.id)}
+                      onClick={() => handleNavClick(item.id, item.action)}
                       sx={{
                         position: "relative",
                         overflow: "hidden",
@@ -278,6 +286,8 @@ const Navbar = () => {
           </Drawer>
         )}
       </AnimatePresence>
+
+      <EnquiryForm isOpen={showEnquiry} onClose={() => setShowEnquiry(false)} />
     </>
   );
 };
