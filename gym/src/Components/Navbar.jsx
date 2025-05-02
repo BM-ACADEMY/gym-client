@@ -183,9 +183,7 @@ const Navbar = () => {
                 onClick={toggleDrawer(!isOpen)}
                 sx={{
                   color: "white",
-                  "&:hover": {
-                    backgroundColor: "rgba(239, 68, 68, 0.3)",
-                  },
+                  
                 }}
               >
                 <motion.div
