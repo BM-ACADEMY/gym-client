@@ -1,6 +1,6 @@
 import React from 'react';
-import Trainer1 from '../assets/teams/trainer1.jpg';
-import Trainer2 from '../assets/teams/trainer2.jpg';
+import Trainer1 from '../assets/teams/trainer4.JPG';
+import Trainer2 from '../assets/teams/trainer3.png';
 import GymBackground from '../assets/teams/sports-equipment-isolated-white-flat-lay.jpg'; // Add your background image
 import Slider from 'react-slick';
 
