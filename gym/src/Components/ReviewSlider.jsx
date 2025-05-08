@@ -13,13 +13,11 @@ const ReviewSlider = () => {
       id: 1,
       text: "Battle Fitness helped me lose 12 kgs in 4 months. Trainers are amazing and motivate me every day!",
       author: "Keerthana",
-      location: "Mannarkudi",
     },
     {
       id: 2,
       text: "The best gym in Thiruvarur! Great ambiance, structured workouts, and super results.",
       author: "Rajesh",
-      location: "Thiruvarur",
     },
     {
       id: 3,
@@ -115,11 +113,8 @@ const ReviewSlider = () => {
               <p className="text-lg sm:text-xl md:text-2xl text-gray-800 mb-6 px-4">
                 {reviews[currentReview].text}
               </p>
-              <div className="font-semibold text-gray-700">
-                — {reviews[currentReview].author},{" "}
-                <span className="text-[#dc2626]">
-                  {reviews[currentReview].location}
-                </span>
+              <div className="font-semibold text-[#dc2626]">
+                — {reviews[currentReview].author}
               </div>
             </motion.div>
           </AnimatePresence>
