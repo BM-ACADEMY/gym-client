@@ -21,6 +21,26 @@ const ReviewSlider = () => {
       author: "Rajesh",
       location: "Thiruvarur",
     },
+    {
+      id: 3,
+      text: "Excellent gym for anyone focused on weight loss and overall fitness! The trainers are professional, encouraging, and provide great guidance. The environment is energetic, and the equipment is in top condition with affordable fees. I've noticed great improvements in my fitness journey .Definitely worth joining",
+      author: "Bhuvajha V",
+    },
+    {
+      id: 4,
+      text: "Trainers are highly knowledgeable, supportive and always ready to guide you, no matter your fitness level. The flexible timings makes me convenient for me and the friendly atmosphere keeps me motivated. Fun, flexible and full of energy.",
+      author: "Dakshinamoorthy",
+    },
+    {
+      id: 5,
+      text: "Good atmosphere and excellent equipmens also well knowledgeable coaches.",
+      author: "Deva karunesh",
+    },
+    {
+      id: 6,
+      text: "Trainers are good at teaching exercises, equipments is good enough, trainers and owner are very friendly to clients.",
+      author: "Surya R",
+    },
   ];
 
   const [currentReview, setCurrentReview] = useState(0);
