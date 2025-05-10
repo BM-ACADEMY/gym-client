@@ -1,32 +1,33 @@
-import React from 'react';
-import { 
-  FaFacebook, 
-  FaTwitter, 
-  FaInstagram, 
-  FaYoutube,
+import React, { useState } from 'react';
+import {
   FaMapMarkerAlt,
   FaPhone,
   FaEnvelope,
+  FaInstagram
 } from 'react-icons/fa';
 import Footerlogo from '../assets/Home/logo.png';
-import FooterBackground from '../assets/Footer/FIT0019.png'; // Add your background image
+import FooterBackground from '../assets/Footer/FIT0019.png';
+import Termsandcondition from './TermsAndConditions';
 
 const Footer = () => {
+  const [openTerms, setOpenTerms] = useState(false);
+
+  const handleOpenTerms = () => setOpenTerms(true);
+  const handleCloseTerms = () => setOpenTerms(false);
+
   return (
-    <footer className="relative py-12 px-4 text-gray-600" id='contact'>
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
+    <footer className="relative py-12 px-4 text-gray-600" id="contact">
+     <div className="absolute inset-0 z-0">
         <img 
           src={FooterBackground} 
           alt="Footer Background"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 text-gray-500"></div>
+       <div className="absolute inset-0 text-gray-500"></div>
       </div>
 
       <div className="container mx-auto max-w-7xl relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          
           {/* Column 1: Logo & Content */}
           <div className="space-y-4">
             <div className="flex items-center">
@@ -64,11 +65,11 @@ const Footer = () => {
                 </div>
                 <div className="flex items-center">
                   <FaPhone className="mr-3 text-rose-500" />
-                  <a href="tel:+919751351156" className="text-gray-500 ">+91 97513 51156</a>
+                  <a href="tel:+919751351156" className="text-gray-500">+91 97513 51156</a>
                 </div>
                 <div className="flex items-center">
                   <FaEnvelope className="mr-3 text-rose-500" />
-                  <a href="mailto:battlefitnesstvr@gmail.com" className="text-gray-500 ">battlefitnesstvr@gmail.com</a>
+                  <a href="mailto:battlefitnesstvr@gmail.com" className="text-gray-500">battlefitnesstvr@gmail.com</a>
                 </div>
               </div>
 
@@ -83,11 +84,11 @@ const Footer = () => {
                 </div>
                 <div className="flex items-center">
                   <FaPhone className="mr-3 text-rose-500" />
-                  <a href="tel:+919751351156" className="text-gray-500 ">+91 97513 51156</a>
+                  <a href="tel:+919751351156" className="text-gray-500">+91 97513 51156</a>
                 </div>
                 <div className="flex items-center">
                   <FaEnvelope className="mr-3 text-rose-500" />
-                  <a href="mailto:battlefitnesmannai@gmail.com" className="text-gray-500 ">battlefitnesmannai@gmail.com</a>
+                  <a href="mailto:battlefitnesmannai@gmail.com" className="text-gray-500">battlefitnesmannai@gmail.com</a>
                 </div>
               </div>
             </address>
@@ -97,26 +98,30 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-bold text-black mb-4 font-quicksand">FOLLOW US</h3>
             <div className="flex space-x-4">
-              <a href="https://www.instagram.com/battle_fitness_field/?igsh=bjVhNml2dGNpdzg4#" target='_blank' className="text-gray-500 hover:text-red-400 transition">
-                <FaInstagram size={30} className='text-red-400' />
+              <a href="https://www.instagram.com/battle_fitness_field/?igsh=bjVhNml2dGNpdzg4#" target="_blank" className="text-gray-500 hover:text-red-400 transition">
+                <FaInstagram size={30} className="text-red-400" />
               </a>
-              {/* <a href="#" className="text-gray-500 hover:text-red-400 transition">
-                <FaFacebook size={30} />
-              </a>
-              <a href="#" className="text-gray-500 hover:text-red-400 transition">
-                <FaYoutube size={30} />
-              </a> */}
             </div>
           </div>
         </div>
 
-        {/* Bottom Copyright */}
-        <div className="mt-12 pt-6 border-t border-gray-700 text-center">
-          <p className="text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} <a href='https://bmtechx.in' className='hover:text-red-400' target='_blank' rel="noopener noreferrer">BMTechx.in.</a> All rights reserved.
+
+        {/* Bottom Copyright and Terms */}
+        <div className="mt-12 pt-6 border-t border-gray-400 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-sm text-gray-700">
+            © {new Date().getFullYear()} <a href="https://bmtechx.in" className="hover:text-red-400" target="_blank" rel="noopener noreferrer">BMTechx.in.</a> All rights reserved.
           </p>
+          <button
+            className="text-sm text-gray-700 hover:text-red-400 underline mb-2 md:mb-0"
+            onClick={handleOpenTerms}
+          >
+            Terms & Conditions
+          </button>
         </div>
       </div>
+
+      {/* Terms Modal */}
+      <Termsandcondition open={openTerms} handleClose={handleCloseTerms} />
     </footer>
   );
 };
